@@ -6,6 +6,7 @@
     <title>Kalkulator Kosztów Pociągowych PKP PLK</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="stations.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- FontAwesome -->
@@ -225,9 +226,6 @@
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 transition-opacity" onclick="togglePanel()"></div>
 
     <script>
-        // Baza stacji (MOCK do autouzupełniania na podstawie infrastruktury PLK)
-        const stations = ["Gdańsk Port Północny", "Gdynia Port", "Kąty Wrocławskie", "Kutno", "Małaszewicze", "Poznań Franowo", "Sławków", "Szczecin Port Centralny", "Warszawa Praga", "Wrocław Brochów", "Tarnowskie Góry", "Łódź Olechów"];
-
         let myChart = null;
 
         function togglePanel() {
