@@ -272,19 +272,19 @@
             const end = document.getElementById('stationB').value;
 
             try {
-                // Wywołanie naszego backendu (Vercel Serverless Function)
                 const res = await fetch(`/api/plk?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`);
                 const data = await res.json();
                 
-                if(data.distance) {
+                if(res.ok && data.distance) {
                     document.getElementById('distanceInput').value = data.distance;
                     calculateCosts();
                 } else {
-                    alert('Błąd API: Brak trasy. Wpisz kilometry ręcznie.');
+                    // Wyświetla prawdziwy błąd zwrócony przez PLK
+                    alert(`Odmowa z API PLK:\n${data.error || 'Nieznany błąd'}\n\nWpisz na razie dystans ręcznie.`);
                 }
             } catch (err) {
                 console.error(err);
-                alert('Błąd komunikacji z serwerem. Wpisz kilometry ręcznie.');
+                alert('Błąd komunikacji z naszym serwerem Vercel.');
             } finally {
                 btn.innerHTML = '<i class="fa-solid fa-magnifying-glass-location"></i> Wyznacz trasę (API)';
             }
